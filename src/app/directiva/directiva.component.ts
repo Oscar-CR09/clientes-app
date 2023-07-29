@@ -8,8 +8,11 @@ import { Component } from '@angular/core';
 export class DirectivaComponent {
 
   listaCurso: string[] = ['TypeScrip','JavaScript','java SE','C#'];
-  
-  
+
+  habilitar: boolean = true;
   constructor() { }
 
+  sethabilitar():void {
+    this.habilitar = (this.habilitar == true)? false:true;
+  }
 }
