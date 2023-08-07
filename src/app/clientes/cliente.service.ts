@@ -10,8 +10,8 @@ import { map } from 'rxjs/operators';
 })
 export class ClienteService {
 
-  private urlEndPoint: string= 'http://localhost:8080/api/cliente';
-  constructor(private http:HttpClient) { }
+  public urlEndPoint: string= 'http://localhost:8080/api/cliente';
+  constructor(public http:HttpClient) { }
 
   getClientes(): Observable<Cliente[]> { 
     //return  of(CLIENTES);
