@@ -11,12 +11,12 @@ import swal from 'sweetalert2'
 export class FormComponent implements OnInit {
   public cliente: Cliente = new Cliente()
   public titulo:string = "crear Cliente";
-  constructor(private clienteService: ClienteService,
+  constructor(public clienteService: ClienteService,
     private router:Router,
     private activateRoute:ActivatedRoute ) { }
 
   ngOnInit() {
-    this.cargarCliente()
+    this.cargarCliente();
   }
 
   cargarCliente():void {
@@ -29,7 +29,7 @@ export class FormComponent implements OnInit {
   
   }
 
-  public create():void {
+  create():void {
     this.clienteService.create(this.cliente)
     .subscribe(cliente =>{
       this.router.navigate(["/clientes"])
@@ -37,6 +37,14 @@ export class FormComponent implements OnInit {
     }
     )
 
+  }
+
+  update():void {
+    this.clienteService.update(this.cliente)
+    .subscribe(cliente => {
+    this.router.navigate(['/clientes'])
+    swal.fire('Cliente Actualizado', `Cliente ${cliente.nombre} actualizado con éxito`,'success');
+    })
   }
 
 }
