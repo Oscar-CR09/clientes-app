@@ -18,15 +18,16 @@ export class ClienteService {
 
   getClientes(): Observable<Cliente[]> { 
     //return  of(CLIENTES);
-    return this.http.get<Cliente[]>(this.urlEndPoint);
-    /*return this.http.get(this.urlEndPoint).pipe(
+    //return this.http.get<Cliente[]>(this.urlEndPoint);
+    return this.http.get(this.urlEndPoint).pipe(
     map( (response) => response as Cliente[])
-    );*/
+    );
 
    }
    
    create(cliente: Cliente) : Observable<Cliente> {
-    return this.http.post<Cliente>(this.urlEndPoint, cliente,{headers: this.httpHeaders}).pipe(
+    return this.http.post(this.urlEndPoint, cliente,{headers: this.httpHeaders}).pipe(
+      map ((response:any) => response.cliente as Cliente),
       catchError(e =>{
         console.error(e.error.mensaje);
         Swal.fire('Error al crear al cliente', e.error.error,'error');
@@ -36,8 +37,8 @@ export class ClienteService {
     );
    }
 
-   getCliente(id:number) : Observable<Cliente> {
-    return this.http.get<Cliente>(`${this.urlEndPoint}/$ {id}`).pipe(
+   getCliente(id:number) : Observable<any> {
+    return this.http.get<any>(`${this.urlEndPoint}/$ {id}`).pipe(
       catchError(e=>{
         this.router.navigate(['/clientes']);
         console.error(e.error.mensaje);
@@ -47,8 +48,8 @@ export class ClienteService {
     );
   }
 
-  update(cliente: Cliente): Observable<Cliente> {
-    return this.http.put<Cliente>(`${this.urlEndPoint}/$ {cliente.id}`,cliente,{headers: this.httpHeaders}).pipe(
+  update(cliente: Cliente): Observable<any> {
+    return this.http.put<any>(`${this.urlEndPoint}/$ {cliente.id}`,cliente,{headers: this.httpHeaders}).pipe(
       catchError(e =>{
         console.error(e.error.mensaje);
         Swal.fire('Error al actualizar al cliente', e.error.error,'error');
