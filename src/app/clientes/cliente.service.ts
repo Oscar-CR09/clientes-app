@@ -30,7 +30,7 @@ export class ClienteService {
         cliente.nombre =cliente.nombre.toUpperCase();
        
         //let datePipe = new DatePipe('en-US');
-        cliente.createAt = /*datePipe.transform(cliente.createAt, 'dd/MM/yyyy'); */ formatDate(cliente.createAt, 'EEEE dd, MMMM yyyy','es-ES');
+        //cliente.createAt = /*datePipe.transform(cliente.createAt, 'dd/MM/yyyy'); */ formatDate(cliente.createAt, 'EEEE dd, MMMM yyyy','es-ES');
         return cliente;
       });
     }
